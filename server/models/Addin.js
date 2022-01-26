@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const {Schema} = mongoose;
 
-const hcaddinSchema = new Schema({
+const AddinSchema = new Schema({
   // add in
   honey:{
       type: Number,
@@ -58,5 +58,5 @@ const hcaddinSchema = new Schema({
   }
 
 })
-const Hcaddin = mongoose.model('Hcaddin', hcaddinSchema);
-module.exports = Hcaddin;
+const Addin = mongoose.model('Hcaddin', AddinSchema);
+module.exports = Addin;
