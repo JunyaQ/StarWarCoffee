@@ -30,7 +30,7 @@ const AddinSchema = new Schema({
       type: String,
 
   },
-  WhippedCream:{
+  whippedCream:{
       type: String,
   },
   cinnamon:{
@@ -40,7 +40,6 @@ const AddinSchema = new Schema({
   //espresso shot
   espresso:{
       type: Number,
-      default:2,
   },
   addlongshot:{
       type: String,
