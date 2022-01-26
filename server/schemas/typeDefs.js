@@ -20,10 +20,6 @@ type User {
       subcatename:String
 
   }
-  type Cart{
-      _id: ID
-      drinks:[Drink]
-  }
   type Addin{
       honey: Number
       creamer: String
@@ -39,11 +35,18 @@ type User {
       sauce: String
       syrups: String
   }
+  ##
+  type Cart{
+      _id: ID
+      drinks:[Drink]
+  }
 
+  ##
   type Auth{
       token: ID!
       user: User
   }
+  ##
 
   ##########################
   type Query {
