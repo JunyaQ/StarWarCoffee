@@ -1,10 +1,12 @@
-const { User } = require("../models");
+const { User, Cart, Drink, Category } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
-const Cart = require("../models/Cart");
+
+
 
 const resolvers = {
   Query: {
+      // user info, only login
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({})// _id: context.user._id
@@ -16,6 +18,33 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    // for one
+    drink: async(parent, {_id})=>{
+        return await Drink.findById(_id)
+        .populate('category')
+        //.populate('addin');
+        //info need
+    },
+    //for all - front page display
+    category:async()=>{
+        return await Category.find();
+    },
+    drinks: async()=>{
+        return await Drink.find()
+        .populate('category')
+        //.populate('addin');
+    },
+    // for cart only login
+    cart:async(parent,{_id},context)=>{
+        if(context.user){
+            const user = await User.findById (context.user._id);
+            return user.cart;
+        }
+        
+        throw new AuthenticationError("Not logged in");
+    }
+    
+  
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -47,15 +76,27 @@ const resolvers = {
     },
 
     addCart: async (parent, args, context) => {
-        if (context.userData) {
+        if (context.User) {
             const mycart = new Cart({drinks});
+            await User.findByIdAndUpdate(context.user._id),{$push: {Cart:mycart}};// ?
+            return mycart;
         }
   
         throw new AuthenticationError("You need to be logged in!");
       },
-
       //
     }
 };
 
 module.exports = resolvers;
+
+
+// const resolvers = {
+//     Query: {
+//       helloWorld: () => {
+//         return 'Hello world!';
+//       }
+//     }
+//   };
+  
+//   module.exports = resolvers;

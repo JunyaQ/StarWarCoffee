@@ -5,4 +5,4 @@ const Hcaddin = require('./Addin');
 const User = require('./User');
 
 
-moddule.exports = {Cart, Category,Drink,Hcaddin,User};
+module.exports = {Cart, Category,Drink,Hcaddin,User};

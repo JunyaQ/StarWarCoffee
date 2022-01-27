@@ -14,7 +14,7 @@ const drinkSchema = new Schema({
         default:"grande"
     },
     price:{
-        type: Numner,
+        type: Number,
         required: true,
     },
     category:{
