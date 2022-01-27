@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// only in other model
 
 const {Schema} = mongoose;
 
@@ -57,5 +58,5 @@ const AddinSchema = new Schema({
   }
 
 })
-const Addin = mongoose.model('Hcaddin', AddinSchema);
+const Addin = mongoose.model('Addin', AddinSchema);
 module.exports = Addin;
