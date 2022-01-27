@@ -22,7 +22,7 @@ const drinkSchema = new Schema({
         ref:'Category',
         required:true
     },
-    ddin:{
+    addin:{
         type:Schema.Types.ObjectId,
         ref:"Addin",
     }

@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const { signToken } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
+const Cart = require("../models/Cart");
 
 const resolvers = {
   Query: {
@@ -45,16 +46,9 @@ const resolvers = {
       return { token, user };
     },
 
-    saveBook: async (parent, args, context) => {
-        if (context.user) {
-          const updatedUser = await User.findByIdAndUpdate(
-            { _id: context.user._id },
-            // take the input type to replace "body" as the arguement
-            { $addToSet: { savedBooks: args.input } },
-            { new: true, runValidators: true }
-          );
-  
-          return updatedUser;
+    addCart: async (parent, args, context) => {
+        if (context.userData) {
+            const mycart = new Cart({drinks});
         }
   
         throw new AuthenticationError("You need to be logged in!");
