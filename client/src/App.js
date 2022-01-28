@@ -7,6 +7,8 @@ import {
 } from '@apollo/client';
 
 import Home from './pages/Home';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -21,11 +23,11 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="flex-column justify-flex-start min-100-vh">
-        {/* <Header /> */}
+        <Header />
         <div className="container">
-          <Home />
+          {/* <Home /> */}
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </ApolloProvider>
   );

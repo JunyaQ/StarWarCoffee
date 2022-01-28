@@ -16,7 +16,7 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <CategoryList
-              thoughts={categories}
+              categories={categories}
               title="Some Feed for Thought(s)..."
             />
           )}
