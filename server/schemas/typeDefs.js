@@ -66,7 +66,7 @@ type Query{
 type Mutation {
   login(email: String!, password: String!): Auth
   addUser(firstName: String!, lastName: String! email: String!, password: String!): Auth
-  #addCart(drinks:[ID!]):Cart
+  addCart(drinks:[ID!]):Cart
   
 }
 `;
