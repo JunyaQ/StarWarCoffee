@@ -9,5 +9,8 @@
     "install": "cd server && npm i && cd ../client && npm i"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
 }
