@@ -1,47 +1,50 @@
-const { Category } = require("../models");
-// const { signToken } = require("../utils/auth");
-// const { AuthenticationError } = require("apollo-server-express");
+const { Category, Drink, User } = require("../models");
+const { signToken } = require("../utils/auth");
+const { AuthenticationError } = require("apollo-server-express");
 
 
 
 const resolvers = {
   Query: {
-    // users: async () => {
-    //   return User.find()
-    //   .select('-__v -password');
-    // }
+    users: async () => {
+      return User.find()
+      .select('-__v -password');
+    },
 
     /////////////////////
 
-  //     // user info, only login
-  //   me: async (parent, args, context) => {
-  //     if (context.user) {
-  //       const userData = await User.findOne({})// _id: context.user._id
-  //         .select("-__v -password")
-  //         .populate("cart");
+      // user info, only login
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({})// _id: context.user._id
+          .select("-__v -password")
+          .populate("cart");
 
-  //       return userData;
-  //     }
-  //     throw new AuthenticationError("Not logged in");
-  //   },
+        return userData;
+      }
+      throw new AuthenticationError("Not logged in");
+    },
   
   //   //
   //   // for one
-  //   drink: async(parent, {_id})=>{
-  //       return await Drink.findById(_id)
-  //       .populate('category')
-  //       //.populate('addin');
-  //       //info need
-  //   },
+    drink: async(parent, {id})=>{
+        return await Drink.findOne({id})
+        .populate('category');
+        //.populate('addin');
+        //info need
+    },
   //   //for all - front page display
     categories:async()=>{
-        return Category.find();
+        return await Category.find();
     },
-  //   drinks: async()=>{
-  //       return await Drink.find()
-  //       .populate('category')
-  //       //.populate('addin');
-  //   },
+  
+    drinks: async()=>{
+        return await Drink.find()
+        .populate('category');
+        // .then(data=>
+        //   console.log(data));
+        //.populate('addin');
+    },
   //   // for cart only login
   //   cart:async(parent,{_id},context)=>{
   //       if(context.user){
