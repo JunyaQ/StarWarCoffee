@@ -52,7 +52,7 @@ type Auth{
     token: ID!
     user: User
 }
-## query
+## query   ## TESTED QUERY
 type Query{
   me: User
   users: [User]
@@ -60,7 +60,14 @@ type Query{
   categories: [Category]
   drinks(category: ID, drinkname: String):[Drink]
   drink(id: ID!, drinkname:String, size:String, price: Float, category:String): Drink
-  ##########cart(drinks:[ID]! drinkname: String, price: Float):Cart
+ cart(drinks:[ID]! drinkname: String, price: Float):Cart
+}
+## Mutation  ##NOT TESTED
+type Mutation {
+  login(email: String!, password: String!): Auth
+  addUser(firstName: String!, lastName: String! email: String!, password: String!): Auth
+  #addCart(drinks:[ID!]):Cart
+  
 }
 `;
 

@@ -12,11 +12,10 @@ const resolvers = {
     },
 
     /////////////////////
-
       // user info, only login
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({})// _id: context.user._id
+        const userData = await User.findOne({id: context.user.id })// _id: context.user._id
           .select("-__v -password")
           .populate("cart");
 
@@ -45,58 +44,56 @@ const resolvers = {
         //   console.log(data));
         //.populate('addin');
     },
-  //   // for cart only login
-  //   cart:async(parent,{_id},context)=>{
-  //       if(context.user){
-  //           const user = await User.findById (context.user._id);
-  //           return user.cart;
-  //       }
+    // for cart only login
+    cart:async(parent,{_id},context)=>{
+        if(context.user){
+            const user = await User.findById (context.user._id);
+            return user.cart;
+        }
         
-  //       throw new AuthenticationError("Not logged in");
-  //   }
+        throw new AuthenticationError("Not logged in");
+    }
     
   
-  // },
-  // Mutation: {
-  //   addUser: async (parent, args) => {
-  //     try {
-  //       const user = await User.create(args);
+  },
+  Mutation: {
+    addUser: async (parent, args) => {
+      try {
+        const user = await User.create(args);
 
-  //       const token = signToken(user);
-  //       return { token, user };
-  //     } 
-  //     catch (err) {
-  //       console.log(err);
-  //     }
-  //   },
-  //   login: async (parent, { email, password }) => {
-  //     const user = await User.findOne({ email });
+        const token = signToken(user);
+        return { token, user };
+      } 
+      catch (err) {
+        console.log(err);
+      }
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-  //     if (!user) {
-  //       throw new AuthenticationError("Incorrect credentials");
-  //     }
+      if (!user) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
 
-  //     const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
 
-  //     if (!correctPw) {
-  //       throw new AuthenticationError("Incorrect credentials");
-  //     }
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
 
-  //     const token = signToken(user);
-  //     return { token, user };
-  //   },
+      const token = signToken(user);
+      return { token, user };
+    },
 
-  //   addCart: async (parent, args, context) => {
-  //       if (context.User) {
-  //           const mycart = new Cart({drinks});
-  //           await User.findByIdAndUpdate(context.user._id),{$push: {Cart:mycart}};// ?
-  //           return mycart;
-  //       }
+    // addCart: async (parent, args, context) => {
+    //     if (context.User) {
+    //         const mycart = new Cart({drinks});
+    //         await User.findByIdAndUpdate(context.user._id),{$push: {Cart:mycart}};// ?
+    //         return mycart;
+    //     }
   
-  //       throw new AuthenticationError("You need to be logged in!");
-  //     },
-  //     //
-
+    //     throw new AuthenticationError("You need to be logged in!");
+    //   },
 
     }
 };
