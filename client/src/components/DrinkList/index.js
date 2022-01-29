@@ -11,13 +11,13 @@ const DrinkList = ({drinks,title})=>{
     return(
         <div>
             <h3>{title}</h3>
-            {drinks && drinks.map(drink =>(
+            {drinks && drinks.map((drink) =>(
                 <div key={drink.id}>
-                    <Link>
+                    <p>
                     {drink.drinkname}
                     {drink.price}
                     {drink.size}
-                    </Link>
+                    </p>
                 </div>
             ))}
             </div>

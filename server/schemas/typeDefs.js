@@ -57,9 +57,9 @@ type Query{
   me: User
   users: [User]
   user(firstName: String!, lastName: String): User
-  categories: [Category]
-  drinks(category: ID, drinkname: String):[Drink]
-  drink(id: ID!, drinkname:String, size:String, price: Float, category:String): Drink
+  categories:[Category]
+  drinks:[Drink]
+  drink(id: ID!): Drink
   cart(drinks:[ID]! drinkname: String, price: Float):Cart
 }
 ## Mutation  ##NOT TESTED

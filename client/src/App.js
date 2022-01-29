@@ -18,7 +18,7 @@ const httpLink = createHttpLink({
 
 console.log(httpLink);
 const client = new ApolloClient({
-  link: 'http://localhost:3001/graphql',
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 

@@ -30,8 +30,8 @@ export const QUERY_CATEGORIES = gql`
   `
 
 export const QUERY_DRINKS = gql`
-query drink{
-  drink{
+query drinks{
+  drinks{
     id
     drinkname
     size
@@ -43,4 +43,5 @@ query drink{
     }
   }
   }`
+ 
 ;
