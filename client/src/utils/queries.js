@@ -18,7 +18,7 @@ export const QUERY_USER = gql`{
 }
 `
 export const QUERY_CATEGORIES = gql`
-  {
+  query categories{
     categories {
       id
       catname
@@ -26,10 +26,8 @@ export const QUERY_CATEGORIES = gql`
     }
   }
   `
-
-export const QUERY_DRINKS = gql `
-{
-  drinks{
+export const QUERY_DRINKS = gql`
+query drink{
     id
     drinkname
     size
@@ -37,7 +35,5 @@ export const QUERY_DRINKS = gql `
     category{
       catname
       subcatname
-    }
-  }
-}`
+    }}`
 ;

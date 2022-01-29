@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 // only in other model
 
-const {Schema} = mongoose;
 
 const AddinSchema = new Schema({
   // add in
@@ -58,5 +57,5 @@ const AddinSchema = new Schema({
   }
 
 })
-const Addin = mongoose.model('Addin', AddinSchema);
+const Addin = model('Addin', AddinSchema);
 module.exports = Addin;

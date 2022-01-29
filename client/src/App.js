@@ -5,8 +5,10 @@ import {
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
+import { Router } from 'react-router-dom';
 
 import Home from './pages/Home';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -14,8 +16,9 @@ const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+console.log(httpLink);
 const client = new ApolloClient({
-  link: httpLink,
+  link: 'http://localhost:3001/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -24,11 +27,13 @@ function App() {
     <ApolloProvider client={client}>
       <div className="flex-column justify-flex-start min-100-vh">
         <Header />
-        <div className="container">
-          {/* <Home /> */}
-        </div>
+        
+       
+          <Home />
+         
         <Footer />
-      </div>
+        </div>
+     
     </ApolloProvider>
   );
 }

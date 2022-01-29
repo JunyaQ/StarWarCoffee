@@ -48,6 +48,12 @@ await Drink.insertMany([
     price:2.23,
     category:[categories[1]._id],
     //addin:''
+  },
+  {
+    drinkname:'test third drink',
+    size:'tall',
+    price:1.11,
+    category:[categories[1]._id],
   }
   
 ])
