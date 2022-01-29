@@ -7,7 +7,8 @@ import {
 } from '@apollo/client';
 import { Router } from 'react-router-dom';
 
-import Home from './pages/Home';
+import Category from './pages/Category';
+import Drinks from './pages/Drinks';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -29,7 +30,8 @@ function App() {
         <Header />
         
        
-          <Home />
+          {/* <Category /> */}
+          <Drinks/>
          
         <Footer />
         </div>
