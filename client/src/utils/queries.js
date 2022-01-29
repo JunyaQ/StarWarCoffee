@@ -1,8 +1,9 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_USER = gql`{
-    user{
-        _id
+    query user{
+      user{
+        id
         firstname
         lastnamne
         email
@@ -13,6 +14,7 @@ export const QUERY_USER = gql`{
                 drinkname
                 price
             }
+          }
         }
     }
 }
@@ -26,14 +28,19 @@ export const QUERY_CATEGORIES = gql`
     }
   }
   `
+
 export const QUERY_DRINKS = gql`
 query drink{
+  drink{
     id
     drinkname
     size
     price
     category{
+      id
       catname
       subcatname
-    }}`
+    }
+  }
+  }`
 ;
