@@ -16,3 +16,16 @@ code {
   color: white;
   text-decoration: none;
 }
+.logo{
+  width: 100px;
+  margin-left: 10px;
+  margin-right: 100px;
+
+}
+.container> logo,
+.container> h1 {
+  margin-right: 200px;
+  margine-left:200px;
+  
+  display: inline-block;
+}
