@@ -24,7 +24,7 @@ export const QUERY_CATEGORIES = gql`
     categories {
       id
       catname
-      subcatname
+      #subcatname
     }
   }
   `
@@ -39,7 +39,7 @@ query drinks{
     category{
       id
       catname
-      subcatname
+      #subcatname
     }
   }
   }`

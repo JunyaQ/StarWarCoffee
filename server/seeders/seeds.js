@@ -25,18 +25,21 @@ db.once('open', async () => {
  }])
 
  const categories = await Category.insertMany([{
-   catname:"firstcat",
-   subcatname:"first-subcat",
+   catname:"Hot Coffee",
+   //subcatname:"first-subcat",
  },
  {
-  catname:"firstcat",
-  subcatname:"first-second-subcat",
+  catname:"Cold Coffee",
+  //subcatname:"first-second-subcat",
 },
 
 {
-  catname:"secondcat",
-  subcatname:"second-subcat",
+  catname:"Hot tea",
+  //subcatname:"second-subcat",
 
+},
+{
+  catname:'cold tea',
 }])
 //console.log(categories);
 await Drink.insertMany([

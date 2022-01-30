@@ -7,11 +7,11 @@ const categorySchema = new Schema({
         require: true,
         trim: true
     },
-    subcatname:{
-        type: String,
-        require: true,
-        trim: true
-    }
+    // subcatname:{
+    //     type: String,
+    //     require: true,
+    //     trim: true
+    // }
 })
 
 const Category = model('Category',categorySchema);

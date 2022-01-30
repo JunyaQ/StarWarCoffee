@@ -5,7 +5,7 @@ const typeDefs = gql`
 type Category{
   id: ID!
   catname: String
-  subcatname: String
+  #subcatname: String
 }
 ## Add in
 type Addin{

@@ -11,8 +11,7 @@ const Category = () => {
 
   if (loading) return "Loading categories...";
   if (error) return <pre>{error.message}</pre>
-
-
+  
   
 
   return (
@@ -23,20 +22,13 @@ const Category = () => {
           // <li key={category.id}>{category.catname}
           // <p>{category.subcatname}</p>
           // </li>
-          <Navbar variant="dark" bg="dark" expand="lg">
+          <Navbar variant="light" bg="light" expand="lg">
   <Container fluid>
     <Navbar.Brand href="#home">{category.catname}</Navbar.Brand>
     <Navbar.Toggle aria-controls="navbar-dark-example" />
     <Navbar.Collapse id="navbar-dark-example">
       <Nav>
-        <NavDropdown
-          id="nav-dropdown-dark-example"
-          title={category.subcatname}
-          menuVariant="dark"
-        >
-          {/* change href
-          <NavDropdown.Item href="/">{category.catsubname}</NavDropdown.Item> */}
-        </NavDropdown>
+          <NavDropdown.Item href="/">{category.catsubname}</NavDropdown.Item>
       </Nav>
     </Navbar.Collapse>
   </Container>

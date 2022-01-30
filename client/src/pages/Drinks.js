@@ -21,7 +21,6 @@ const Drinks = () => {
             <p>{drink.price}</p>
             <p>{drink.size}</p>
             <p>{drink.category.catname}</p>
-            <p>{drink.category.subcatname}</p>
         
             </li>
 
