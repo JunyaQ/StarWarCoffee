@@ -26,11 +26,16 @@ db.once('open', async () => {
 
  const categories = await Category.insertMany([{
    catname:"firstcat",
-   subcatname:"firstsubcat",
+   subcatname:"first-subcat",
  },
+ {
+  catname:"firstcat",
+  subcatname:"first-second-subcat",
+},
+
 {
   catname:"secondcat",
-  subcatname:"secondsubcat",
+  subcatname:"second-subcat",
 
 }])
 //console.log(categories);

@@ -30,7 +30,7 @@ function App() {
         <Header />
         
        
-          {/* <Category /> */}
+          <Category />
           <Drinks/>
          
         <Footer />
