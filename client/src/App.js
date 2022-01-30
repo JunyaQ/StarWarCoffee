@@ -12,6 +12,7 @@ import Drinks from './pages/Drinks';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import NavigateBar from './components/NavigateBar';
 
 import Category from './pages/Category';
 import Login from "./pages/Login";
@@ -36,7 +37,9 @@ function App() {
         <Header />
         <div className="container">
         <Router>
-        <Category />
+        <NavigateBar/>
+        {/* wait for solve navigate problem then remove */}
+        <Category/>
         <Switch>
         <Route exact path="/home" component={Home}/>
         <Route exact path="/drinks" component={Drinks}/>

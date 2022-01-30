@@ -1,6 +1,7 @@
 import React from 'react';
 import Auth from '../../utils/auth';
-import {Link} from 'react-router-dom'
+import {Navbar,Nav,Container} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 
 
@@ -9,21 +10,16 @@ function NavigateBar(props) {
   if(Auth.loggedIn()){
     return (
       <div>
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="success" expand="lg">
   <Container>
-    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
-        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown>
+        <Nav.Link href="/home">Home</Nav.Link>
+        <Nav.Link href="/category">Menu</Nav.Link>
+        <Nav.Link href="/account">Account</Nav.Link>
+        <Nav.Link href="/cart">Cart</Nav.Link>
+        <Nav.Link href="/home" onClick={()=>Auth.logout}>Logout</Nav.Link>   
       </Nav>
     </Navbar.Collapse>
   </Container>
@@ -33,21 +29,16 @@ function NavigateBar(props) {
   }else {
     return (
       <div>
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="success" expand="lg">
   <Container>
-    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
-        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown>
+      {/* <Link to="/Dashboard"> Dashboard </Link> */}
+      <Nav.Link href="/home">Home</Nav.Link>
+      <Nav.Link href="/category">Menu</Nav.Link>
+      <Nav.Link href="/signup">Sign up</Nav.Link>
+      <Nav.Link href="/login">Login</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
