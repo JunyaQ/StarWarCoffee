@@ -1,14 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Jumbotron, Button, Container, Row, Col, Image } from 'react-bootstrap';
-import backgroundimg from "../img/home.jpg"
+import background from "../img/background.jpg"
 
 
 function Home() {
 
 return (
 <div>
-<img src={backgroundimg} alt="background" className='background'/>
+<img src={background} alt="background" className='background'/>
 <Button className='mt-4' variant='success' href='/drinks' size='lg'>
 Check All Drinks
 </Button>
