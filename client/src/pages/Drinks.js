@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import {QUERY_DRINKS} from "../utils/queries";
+import { Card } from "react-bootstrap";
 
 
 const Drinks = () => {
@@ -16,18 +17,30 @@ const Drinks = () => {
         <h1>List of coffees</h1>
         
           {data.drinks.map((drink)=>(
-            <li key={drink.id}>{drink.drinkname}
-            <p>{drink.id}</p>
-            <p>{drink.price}</p>
-            <p>{drink.size}</p>
-            <p>{drink.category.catname}</p>
+            // <li key={drink.id}>{drink.drinkname}
+            // <p>{drink.id}</p>
+            // <p>{drink.price}</p>
+            // <p>{drink.size}</p>
+            // <p>{drink.category.catname}</p>
         
-            </li>
-
-          ))}
-       
-    
- 
+            // </li>
+            <Card
+            bg={'secondary'}
+            key={drink.id}
+            text={'secondary' === 'light' ? 'dark' : 'white'}
+            style={{ width: '18rem' }}
+            className="mb-2"
+          >
+            <Card.Header>{drink.category.catname}</Card.Header>
+            <Card.Body>
+              <Card.Title>{drink.drinkname} </Card.Title>
+              <Card.Text>
+               CA${drink.price}<br/>
+               {drink.size}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+ ))}
       </div>
   
   
