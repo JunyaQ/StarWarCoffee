@@ -7,7 +7,6 @@ export const QUERY_USER = gql`{
         firstname
         lastnamne
         email
-        password
         cart{
             drinks{
                 id
@@ -43,5 +42,22 @@ query drinks{
     }
   }
   }`
+ 
+  export const QUERY_CATDRINK = gql`
+  query getDrinks($category: ID) {
+    drinks(category: $id) {
+      id
+      drinkname
+      price
+      category {
+        id
+        catname
+      }
+    }
+  }
+`
+
+  
+
  
 ;
