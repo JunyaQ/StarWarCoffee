@@ -1,47 +1,39 @@
 import { useQuery } from "@apollo/client";
-import {Navbar,Nav,NavDropdown, Container} from "react-bootstrap";
+import {Navbar,Nav,Container} from "react-bootstrap";
 import React from "react";
-import { ButtonGroup } from "react-bootstrap";
 import {QUERY_CATEGORIES} from "../utils/queries";
 
 
 const Category = () => {
-  const { data, loading, error } = useQuery(QUERY_CATEGORIES);
-  
+const { data, loading, error } = useQuery(QUERY_CATEGORIES);
 
-  if (loading) return "Loading categories...";
-  if (error) return <pre>{error.message}</pre>
-  
-  
 
-  return (
-    <div>
-      <h1>Coffe Menu</h1>
-      <div>
-        {data.categories.map((category) => (
-          // <li key={category.id}>{category.catname}
-          // <p>{category.subcatname}</p>
-          // </li>
-          <Navbar variant="light" bg="light" expand="lg">
-  <Container fluid>
-    <Navbar.Brand href="#home">{category.catname}</Navbar.Brand>
-    <Navbar.Toggle aria-controls="navbar-dark-example" />
-    <Navbar.Collapse id="navbar-dark-example">
-      <Nav>
-          <NavDropdown.Item href="/">{category.catsubname}</NavDropdown.Item>
-      </Nav>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
-        ))}
-      </div>
+if (loading) return "Loading categories...";
+if (error) return <pre>{error.message}</pre>
 
-      <div>
 
-      </div>
 
-    </div>
-  );
+return (
+
+<div>
+
+  <Navbar bg="success" variant="dark">
+    <Container>
+    <Navbar.Brand href="#category">Menu</Navbar.Brand>
+    </Container>
+  </Navbar>
+{data.categories.map((category) => (
+  // <li key={category.id}>{category.catname}
+  // <p>{category.subcatname}</p>
+  // </li>
+    <Nav className="maincolor">
+      <Nav.Link href="{category.id}" style={{ color: 'white' }}>{category.catname}</Nav.Link>
+    </Nav>
+   
+))}
+
+</div>
+);
 }
 
 export default Category;

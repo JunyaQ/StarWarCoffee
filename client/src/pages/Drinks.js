@@ -25,9 +25,9 @@ const Drinks = () => {
         
             // </li>
             <Card
-            bg={'secondary'}
+            bg={'success'}
             key={drink.id}
-            text={'secondary' === 'light' ? 'dark' : 'white'}
+            text={'success' === 'light' ? 'dark' : 'white'}
             style={{ width: '18rem' }}
             className="mb-2"
           >

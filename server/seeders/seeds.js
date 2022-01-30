@@ -24,7 +24,7 @@ db.once('open', async () => {
   password:"123321"
  }])
 
- 
+
  const categories = await Category.insertMany([{
    catname:"Hot Coffee",//0
    //subcatname:"first-subcat",
@@ -34,11 +34,11 @@ db.once('open', async () => {
   //subcatname:"first-second-subcat",
 },
 {
-  catname:"Hot tea",//2
+  catname:"Hot Tea",//2
   //subcatname:"second-subcat",
 },
 {
-  catname:'cold tea',//3
+  catname:'Cold Tea',//3
 }])
 //console.log(categories);
 
