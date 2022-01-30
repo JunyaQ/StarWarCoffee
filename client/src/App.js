@@ -5,19 +5,24 @@ import {
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
-import { Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Category from './pages/Category';
+
 import Drinks from './pages/Drinks';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+import Category from './pages/Category';
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import NoMatch from "./pages/NoMatch";
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
-console.log(httpLink);
+//console.log(httpLink);
 const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
@@ -28,12 +33,23 @@ function App() {
     <ApolloProvider client={client}>
       <div className="flex-column justify-flex-start min-100-vh">
         <Header />
-        
-       
-          <Category />
-          <Drinks/>
+        <div className="container">
+        <Router>
+        <Category />
+        <Switch>
+        <Route exact path="/" component={Drinks}/>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/singup" component={Signup} />
+        <Route component={NoMatch} />
+        </Switch>
+        </Router>
+          </div>
+              
+          {/* <Category />
+          <Drinks/> */}
          
         <Footer />
+        
         </div>
      
     </ApolloProvider>
