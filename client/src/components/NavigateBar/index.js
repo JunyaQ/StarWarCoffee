@@ -16,7 +16,7 @@ function NavigateBar(props) {
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
         <Nav.Link href="/home">Home</Nav.Link>
-        <Nav.Link href="/category">Menu</Nav.Link>
+        <Nav.Link href="/drinks">Drinks</Nav.Link>
         <Nav.Link href="/account">Account</Nav.Link>
         <Nav.Link href="/cart">Cart</Nav.Link>
         <Nav.Link href="/home" onClick={()=>Auth.logout}>Logout</Nav.Link>   
@@ -36,7 +36,7 @@ function NavigateBar(props) {
       <Nav className="me-auto">
       {/* <Link to="/Dashboard"> Dashboard </Link> */}
       <Nav.Link href="/home">Home</Nav.Link>
-      <Nav.Link href="/category">Menu</Nav.Link>
+      <Nav.Link href="/drinks">Drinks</Nav.Link>
       <Nav.Link href="/signup">Sign up</Nav.Link>
       <Nav.Link href="/login">Login</Nav.Link>
       </Nav>
