@@ -44,20 +44,18 @@ query drinks{
   }`
  
   export const QUERY_CATDRINK = gql`
-  query getDrinks($category: ID) {
-    drinks(category: $id) {
+  query getcatdrink($category: ID!) {
+    category(category: $id) {
       id
-      drinkname
-      price
-      category {
+      catname
+      drinks {
         id
-        catname
+        drinkname
+        size
+        price
       }
     }
   }
 `
-
-  
-
  
 ;

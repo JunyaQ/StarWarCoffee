@@ -3,6 +3,9 @@ import { Button} from 'react-bootstrap';
 import background from "../img/background.jpg"
 
 
+import SingleDrink from './SingleDrink';
+
+
 function Home() {
 
 return (
@@ -11,6 +14,8 @@ return (
 <Button className='mt-4' variant='success' href='/drinks' size='lg'>
 Check All Drinks
 </Button>
+
+<SingleDrink/>
 
 
 </div>
