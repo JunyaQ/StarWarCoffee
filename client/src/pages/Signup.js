@@ -42,17 +42,31 @@ const Signup = () => {
       <div className="col-12 col-md-6">
         <div className="card">
           <h4 className="card-header">Sign Up</h4>
-          <div className="card-body">
+          <div className="signupcontainer">
             <form onSubmit={handleFormSubmit}>
+            <label for="firstName"><b>Enter your first Name:</b></label>
               <input
                 className="form-input"
-                placeholder="Your username"
-                name="username"
-                type="username"
-                id="username"
-                value={formState.username}
+                placeholder="Your first name"
+                name="firstName"
+                type="firstName"
+                id="firstName"
+                value={formState.firstName}
                 onChange={handleChange}
+                required
               />
+            <label for="lastName"><b>Enter your last Name:</b></label>
+            <input
+                className="form-input"
+                placeholder="Your last name"
+                name="lastName"
+                type="lastName"
+                id="lastName"
+                value={formState.lastName}
+                onChange={handleChange}
+                required
+              />
+              <label for="email"><b>Enter your Email:</b></label>
               <input
                 className="form-input"
                 placeholder="Your email"
@@ -61,7 +75,9 @@ const Signup = () => {
                 id="email"
                 value={formState.email}
                 onChange={handleChange}
+                required
               />
+              <label for="password"><b>Enter your password:</b></label>
               <input
                 className="form-input"
                 placeholder="******"
@@ -70,10 +86,14 @@ const Signup = () => {
                 id="password"
                 value={formState.password}
                 onChange={handleChange}
+                required
               />
-              <button className="btn d-block w-100" type="submit">
+              <button className="signupbtn" type="submit">
                 Submit
               </button>
+              <div className="login">
+            <p>Already have an account? <a href="/login">Login</a>.</p>
+            </div>
             </form>
 
             {error && <div>Signup failed</div>}

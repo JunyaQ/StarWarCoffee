@@ -6,11 +6,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+*{
+  box-sizing: border-box;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* header, main*/
 .maincolor{
   background: seagreen;
   color: white;
@@ -34,4 +38,44 @@ code {
  width: 70%;
  position: relative;
 
+}
+
+/* sign up page css */
+.signupcontainer{
+  border-radius: 5px;
+  background-color: whitesmoke;
+ 
+}
+.signupcontainer form{
+  max-width: 620px;
+  margin: auto;
+  padding: 10px;
+  background: white;
+}
+.login {
+  background-color: whitesmoke;
+  text-align: center;
+}
+.signupbtn{
+  background-color: seagreen;
+  color: whitesmoke;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+input[type=text], input[type=firstName], input[type=lastName],input[type=email], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: whitesmoke;
+}
+
+input[type=text]:focus, input[type=firstName]:focus, input[type=lastName]:focus,input[type=email]:focus, input[type=password]:focus {
+  background-color: gainsboro;
+  outline: none;
 }
