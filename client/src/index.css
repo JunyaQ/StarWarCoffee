@@ -41,12 +41,12 @@ code {
 }
 
 /* sign up page css */
-.card-body{
+.form-body{
   border-radius: 5px;
   background-color: whitesmoke;
  
 }
-.card-body form{
+.form-body form{
   max-width: 620px;
   margin: auto;
   padding: 10px;
