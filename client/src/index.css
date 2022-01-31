@@ -41,12 +41,12 @@ code {
 }
 
 /* sign up page css */
-.signupcontainer{
+.card-body{
   border-radius: 5px;
   background-color: whitesmoke;
  
 }
-.signupcontainer form{
+.card-body form{
   max-width: 620px;
   margin: auto;
   padding: 10px;
@@ -56,7 +56,7 @@ code {
   background-color: whitesmoke;
   text-align: center;
 }
-.signupbtn{
+.signupbtn, .loginbtn{
   background-color: seagreen;
   color: whitesmoke;
   padding: 16px 20px;

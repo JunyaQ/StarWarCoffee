@@ -1,7 +1,7 @@
 import React from 'react';
 import Auth from '../../utils/auth';
 import {Navbar,Nav,Container} from "react-bootstrap";
-import {Link} from "react-router-dom";
+
 
 
 
@@ -19,7 +19,7 @@ function NavigateBar(props) {
         <Nav.Link href="/drinks">Drinks</Nav.Link>
         <Nav.Link href="/account">Account</Nav.Link>
         <Nav.Link href="/cart">Cart</Nav.Link>
-        <Nav.Link href="/home" onClick={()=>Auth.logout}>Logout</Nav.Link>   
+        <Nav.Link href="/home" onClick={Auth.logout}>Logout</Nav.Link>   
       </Nav>
     </Navbar.Collapse>
   </Container>
