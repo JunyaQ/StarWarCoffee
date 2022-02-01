@@ -8,21 +8,23 @@ const resolvers = {
   Query: {
     users: async () => {
       return User.find()
-      .select('-__v -password');
+      .select('-__v -password')
+      .populate('drinks');
     },
 
     /////////////////////
       // user info, only login
-    me: async (parent, args, context) => {
-      if (context.user) {
-        const userData = await User.findOne({id: context.user.id })// _id: context.user._id
-          .select("-__v -password")
-          .populate("cart");
-
-        return userData;
-      }
-      throw new AuthenticationError("Not logged in");
-    },
+      me: async (parent, args, context) => {
+        if (context.user) {
+          const userData = await User.findOne({ id: context.user._id })
+            .select('-__v -password')
+            .populate('drinks')
+  
+          return userData;
+        }
+  
+        throw new AuthenticationError('Not logged in');
+      },
   
   //   //
   //   // for one
