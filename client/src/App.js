@@ -6,7 +6,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import { setContext } from '@apollo/client/link/context';
 
 import Drinks from './pages/Drinks';
 
@@ -19,14 +19,25 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NoMatch from "./pages/NoMatch";
 import Home from "./pages/Home";
+import Detail from './pages/Detail';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 //console.log(httpLink);
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -43,6 +54,7 @@ function App() {
         <Switch>
         <Route exact path="/home" component={Home}/>
         <Route exact path="/drinks" component={Drinks}/>
+        <Route exact path="/drinks/:id" component={Detail} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route component={NoMatch} />

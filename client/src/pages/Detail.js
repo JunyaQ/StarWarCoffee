@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import { QUERY_PRODUCTS as QUERY_DRINKS } from '../utils/queries';
+import {QUERY_DRINKS } from '../utils/queries';
 
 function Detail() {
   const { id } = useParams();
 
-  const [currentDrink, setCurrentProduct] = useState({});
+  const [currentDrink, setCurrentDrink] = useState({});
 
   const { loading, data } = useQuery(QUERY_DRINKS);
 
@@ -15,7 +15,7 @@ function Detail() {
 
   useEffect(() => {
     if (drinks.length) {
-      setCurrentProduct(drinks.find((product) => product.id === id));
+      setCurrentDrink(drinks.find((drink) => drink.id === id));
     }
   }, [drinks, id]);
 
@@ -25,7 +25,7 @@ function Detail() {
         <div className="container my-1">
           <Link to="/drinks">← Back to Drinks</Link>
 
-          <h2>{currentDrink.name}</h2>
+          <h2>{currentDrink.drinkname}</h2>
 
           <p>{currentDrink.description}</p>
 
