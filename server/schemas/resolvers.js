@@ -60,15 +60,6 @@ const resolvers = {
       }
       return await Drink.find(params).populate('category');
     },
-    // for cart only login
-    cart:async(parent,{_id},context)=>{
-        if(context.user){
-            const user = await User.findById (context.user._id);
-            return user.cart;
-        }
-        
-        throw new AuthenticationError("Not logged in");
-    },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user.id);
@@ -109,15 +100,21 @@ const resolvers = {
       return { token, user };
     },
 
-    // addCart: async (parent, args, context) => {
-    //     if (context.User) {
-    //         const mycart = new Cart({drinks});
-    //         await User.findByIdAndUpdate(context.user._id),{$push: {Cart:mycart}};// ?
-    //         return mycart;
-    //     }
-  
-    //     throw new AuthenticationError("You need to be logged in!");
-    //   },
+    addDrink: async (parent, args, context) => {
+      if (context.user) {
+        const drink = await Drink.create({ ...args, email: context.user.email });
+
+        await User.findByIdAndUpdate(
+          { id: context.user.id },
+          { $push: { drinks: drink.id } },
+          { new: true }
+        );
+
+        return drink;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
 
     }
 };

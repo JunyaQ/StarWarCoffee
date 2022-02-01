@@ -43,11 +43,6 @@ type User {
  # cart:[Cart]
 }
 
-## cart
-type Cart{
-    id: ID
-    drinks:[Drink]
-}
 ##auth
 type Auth{
     token: ID!
@@ -61,14 +56,14 @@ type Query{
   categories:[Category]
   drinks(category:ID, catname: String):[Drink]
   drink(id: ID!): Drink
-  cart(id: ID!):Cart
+ 
 }
 ## Mutation  ##NOT TESTED
 type Mutation {
   login(email: String!, password: String!): Auth
   addUser(firstName: String!, lastName: String! email: String!, password: String!): Auth
-  addCart(drinks:[ID!]):Cart
   updateDrink(id: ID!): Drink
+  addDrink(drinkname: String): Drink
   
 }
 `;

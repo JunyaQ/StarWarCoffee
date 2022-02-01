@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/client';
 import { ADD_DRINKS } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+
 // import { QUERY_DRINKS, QUERY_ME } from '../../utils/queries';
 
 const DrinkForm = (props) => {
@@ -12,7 +12,7 @@ const DrinkForm = (props) => {
     price:'',
     category:'',
   });
-  const [addUser, { error }] = useMutation(ADD_DRINKS);
+  const [addDrink, { error }] = useMutation(ADD_DRINKS);
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -28,15 +28,12 @@ const DrinkForm = (props) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const { data } = await addUser({
+   
+      await addDrink({
         variables: { ...formState },
       });
 
-      Auth.login(data.addUser.token);
-    } catch (e) {
-      console.error(e);
-    }
+      
   };
 
   return (
@@ -93,8 +90,6 @@ const DrinkForm = (props) => {
               <button className="addbtn" type="submit">
                 Submit
               </button>
-              <div className="login">
-            </div>
             </form>
 
             {error && <div>Add fail</div>}

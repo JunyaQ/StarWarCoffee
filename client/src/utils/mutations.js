@@ -30,6 +30,9 @@ export const ADD_DRINKS = gql`
       drinkname
       size
       price
+      category{
+        catname
+      }
     }
   }
 `;
