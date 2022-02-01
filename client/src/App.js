@@ -15,13 +15,14 @@ import Footer from './components/Footer';
 import NavigateBar from './components/NavigateBar';
 import DrinkList from './components/DrinkList';
 import CategoryList from './components/CategoryList';
+import DrinkForm from './components/DrinkForm';
 
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NoMatch from "./pages/NoMatch";
 import Home from "./pages/Home";
-import Account from './pages/Account';
+
 
 
 import SingleDrink from './pages/SingleDrink';
@@ -59,7 +60,7 @@ function App() {
         <Switch>
         <Route exact path="/home" component={Home}/>
         <Route exact path="/drinks" component={DrinkList}/>
-        <Route exact path="/account" component={Account}/>
+        <Route exact path="/form" component={DrinkForm}/>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/drinks/:id" component={SingleDrink}/>

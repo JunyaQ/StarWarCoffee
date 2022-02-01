@@ -3,7 +3,7 @@ import { Button} from 'react-bootstrap';
 import background from "../img/background.jpg"
 
 
-import SingleDrink from './SingleDrink';
+import DrinkForm from '../components/DrinkForm';
 
 
 function Home() {
@@ -16,6 +16,7 @@ return (
 Check All Drinks
 </Button>
 
+{/* <DrinkForm/> */}
 
 
 

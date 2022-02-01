@@ -56,7 +56,7 @@ code {
   background-color: whitesmoke;
   text-align: center;
 }
-.signupbtn, .loginbtn{
+.signupbtn, .loginbtn, addbtn{
   background-color: seagreen;
   color: whitesmoke;
   padding: 16px 20px;
@@ -78,4 +78,26 @@ input[type=text], input[type=firstName], input[type=lastName],input[type=email],
 input[type=text]:focus, input[type=firstName]:focus, input[type=lastName]:focus,input[type=email]:focus, input[type=password]:focus {
   background-color: gainsboro;
   outline: none;
+}
+input[type=text], input[type=drinkname], input[type=price], input[type=size], input[type=category]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: whitesmoke;
+}
+input[type=text]:focus, input[type=drinkname]:focus, input[type=price]:focus, input[type=size]:focus, input[type=category]:focus{
+  background-color: gainsboro;
+  outline: none;
+
+}
+/*single drink list, and all drink list*/
+.drinklink{
+  text-decoration: none;
+   color: white;
+}
+.drinklink :hover{
+  text-decoration: none;
+  color: black;
 }
