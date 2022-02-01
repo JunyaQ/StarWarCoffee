@@ -23,3 +23,19 @@ export const ADD_USER = gql`
     }
   }
 `;
+export const ADD_CART = gql`
+  mutation addCart($drinks: [ID]!) {
+    addCart(drinks: $drinks) {
+      id
+      drinks {
+        id
+        drinkname
+        size
+        price
+        category {
+          catname
+        }
+      }
+    }
+  }
+`;

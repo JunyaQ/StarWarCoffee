@@ -60,7 +60,7 @@ type Query{
   categories:[Category]
   drinks(category:ID, catname: String):[Drink]
   drink(id: ID!): Drink
-  cart(drinks:[ID]! drinkname: String, price: Float):Cart
+  cart(id: ID!):Cart
 }
 ## Mutation  ##NOT TESTED
 type Mutation {
