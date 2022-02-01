@@ -39,7 +39,7 @@ type User {
   lastName:String
   email: String
   password: String
-  #cart:[Cart]
+  cart:[Cart]
 }
 
 ## cart
@@ -56,9 +56,9 @@ type Auth{
 type Query{
   me: User
   users: [User]
-  user(firstName: String!, lastName: String): User
+  user: User
   categories:[Category]
-  drinks:[Drink]
+  drinks(category:ID, catname: String):[Drink]
   drink(id: ID!): Drink
   cart(drinks:[ID]! drinkname: String, price: Float):Cart
 }
@@ -67,6 +67,8 @@ type Mutation {
   login(email: String!, password: String!): Auth
   addUser(firstName: String!, lastName: String! email: String!, password: String!): Auth
   addCart(drinks:[ID!]):Cart
+  updateUser(firstName: String, lastName: String, email: String, password: String): User
+  updateDrink(id: ID!): Drink
   
 }
 `;

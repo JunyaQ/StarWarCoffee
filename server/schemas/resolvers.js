@@ -37,12 +37,26 @@ const resolvers = {
         return await Category.find();
     },
   
-    drinks: async()=>{
-        return await Drink.find()
-        .populate('category');
-        // .then(data=>
-        //   console.log(data));
-        //.populate('addin');
+    // drinks: async()=>{
+    //     return await Drink.find()
+    //     .populate('category');
+    //     // .then(data=>
+    //     //   console.log(data));
+    //     //.populate('addin');
+    // },
+    drinks: async (parent, { category, catname }) => {
+      const params = {};
+
+      if (category) {
+        params.category = category;
+      }
+
+      if (catname) {
+        params.name = {
+          $regex: catname
+        };
+      }
+      return await Drink.find(params).populate('category');
     },
     // for cart only login
     cart:async(parent,{_id},context)=>{
@@ -52,8 +66,16 @@ const resolvers = {
         }
         
         throw new AuthenticationError("Not logged in");
-    }
-    
+    },
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user.id);
+
+        return user;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
   
   },
   Mutation: {
