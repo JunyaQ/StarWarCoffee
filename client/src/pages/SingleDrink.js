@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import Drinks from './Drinks';
+// import Drinks from './Drinks';
 import { useQuery } from '@apollo/client';
 import {QUERY_ONE_DRINK } from '../utils/queries';
 

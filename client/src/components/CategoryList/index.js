@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 import {Navbar,Nav,Container} from "react-bootstrap";
 import React from "react";
-import {QUERY_CATEGORIES} from "../utils/queries";
+import {QUERY_CATEGORIES} from "../../utils/queries";
 
 
-const Category = () => {
+const CategoryList = () => {
 const { data, loading, error } = useQuery(QUERY_CATEGORIES);
 
 
@@ -37,4 +37,4 @@ return (
 );
 }
 
-export default Category;
+export default CategoryList;

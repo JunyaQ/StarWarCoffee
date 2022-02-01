@@ -8,13 +8,15 @@ import {
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
 
-import Drinks from './pages/Drinks';
+
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 import NavigateBar from './components/NavigateBar';
+import DrinkList from './components/DrinkList';
+import CategoryList from './components/CategoryList';
 
-import Category from './pages/Category';
+
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NoMatch from "./pages/NoMatch";
@@ -53,10 +55,10 @@ function App() {
         <Router>
         <NavigateBar/>
         {/* wait for solve navigate problem then remove */}
-        <Category/>
+        <CategoryList/>
         <Switch>
         <Route exact path="/home" component={Home}/>
-        <Route exact path="/drinks" component={Drinks}/>
+        <Route exact path="/drinks" component={DrinkList}/>
         <Route exact path="/account" component={Account}/>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
