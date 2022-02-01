@@ -30,6 +30,7 @@ type Drink{
   size: String
   price: Float
   category:Category
+  firstname:String
   #addin:[Addin]
 }
 ## user

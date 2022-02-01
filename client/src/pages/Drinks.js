@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import {QUERY_DRINKS} from "../utils/queries";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 
 const Drinks = () => {
@@ -24,6 +25,7 @@ const Drinks = () => {
             // <p>{drink.category.catname}</p>
         
             // </li>
+           
             <Card
             bg={'success'}
             key={drink.id}
@@ -31,6 +33,7 @@ const Drinks = () => {
             style={{ width: '18rem' }}
             className="mb-2"
           >
+             <Link to= {`/drinks/${drink.id}`} className="drinklink">
             <Card.Header>{drink.category.catname}</Card.Header>
             <Card.Body>
               <Card.Title>{drink.drinkname} </Card.Title>
@@ -39,7 +42,9 @@ const Drinks = () => {
                {drink.size}
               </Card.Text>
             </Card.Body>
+            </Link>
           </Card>
+          
  ))}
       </div>
   

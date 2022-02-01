@@ -58,16 +58,29 @@ query getDrinks($category:ID){
   }
 `
 
-export const QUERY_ALL_DRINKS = gql`
-  {
-    drinks {
+export const QUERY_ONE_DRINK = gql`
+query getDrink($id:ID!){
+  drinks (id:$id){
+    id
+    drinkname
+    size
+    price
+    category{
       id
-      drinkname
-      size
-      price
-      category {
-        catname
-      }
+      #catname
+      #subcatname
     }
   }
+  }`
+ 
+
+export const QUERY_ME = gql`
+  {
+    me {
+      id
+      firstName
+      lastName
+      email
+  }
+}
 `;

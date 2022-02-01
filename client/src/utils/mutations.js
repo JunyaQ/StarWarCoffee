@@ -23,19 +23,13 @@ export const ADD_USER = gql`
     }
   }
 `;
-export const ADD_CART = gql`
-  mutation addCart($drinks: [ID]!) {
-    addCart(drinks: $drinks) {
+export const ADD_DRINKS = gql`
+  mutation addDrink($drinkname: String!) {
+    addDrink(drinkname: $drinkname) {
       id
-      drinks {
-        id
-        drinkname
-        size
-        price
-        category {
-          catname
-        }
-      }
+      drinkname
+      size
+      price
     }
   }
 `;

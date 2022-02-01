@@ -1,18 +1,18 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-
+import Drinks from './Drinks';
 import { useQuery } from '@apollo/client';
-import { QUERY_CATDRINK } from '../utils/queries';
+import {QUERY_ONE_DRINK } from '../utils/queries';
 
 const SingleDrink= (props) => {
-  const { id: categoryid } = useParams();
+  const { id: drinkid } = useParams();
 
-  const { loading, data } = useQuery(QUERY_CATDRINK, {
-    variables: { id: categoryid },
+  const { loading, data } = useQuery(QUERY_ONE_DRINK, {
+    variables: { id: drinkid },
   });
 
-  const category = data?.category || {};
+  const drink = data?.drink || {};
 
   if (loading) {
     return <div>Loading...</div>;
@@ -20,7 +20,8 @@ const SingleDrink= (props) => {
 
   return (
     <div>
-      <p>{category.catname}</p>
+      <h1>Hello single drinks</h1>
+      <p>{drink.dinkname}</p>
       {/* {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />} */}
     </div>
   );
