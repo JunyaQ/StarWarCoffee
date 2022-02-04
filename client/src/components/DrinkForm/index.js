@@ -67,6 +67,7 @@ const DrinkForm = (props) => {
        await addDrink({
         variables: { ...formState },// everything in form state
       });
+      setFormState('');
     } catch (e) {
       console.error(e);
     }

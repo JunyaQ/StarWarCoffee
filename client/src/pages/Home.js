@@ -3,7 +3,6 @@ import { Button} from 'react-bootstrap';
 import background from "../img/background.jpg"
 
 
-import DrinkForm from '../components/DrinkForm';
 
 
 function Home() {

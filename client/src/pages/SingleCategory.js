@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom';
 // import Drinks from './Drinks';
 import { useQuery } from '@apollo/client';
 import {QUERY_DRINKS } from '../utils/queries';
-import { Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import {categorized} from "../utils/categorize";
 
 const SingleCategory= (props) => {
@@ -23,10 +21,10 @@ const SingleCategory= (props) => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  const getdata = async()=>{
-    const list =  categorized.categorized(data, catid);
-console.log(list);
-  }
+//   const getdata = async()=>{
+//     const list =  categorized.categorized(data, catid);
+// console.log(list);
+//   }
 
   return (
     <div>

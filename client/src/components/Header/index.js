@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from '../../img/logo.jpg'
-import NavigateBar from '../NavigateBar';
 import { BrowserRouter as Link } from "react-router-dom";
 
 const Header = () => {

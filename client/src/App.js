@@ -13,7 +13,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import NavigateBar from './components/NavigateBar';
 import DrinkList from './components/DrinkList';
-import CategoryList from './components/CategoryList';
+
 import DrinkForm from './components/DrinkForm';
 
 
