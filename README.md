@@ -26,4 +26,4 @@ It also buyer to view the menu, and also as a user, I want to click onto each dr
 - Optimize the main page (originally plan to add scrolling promote page at the picture place)
 
 ## Deployed heroku page: 
-https://thestarwar.herokuapp.com/
+https://starwarcoffee.herokuapp.com/
