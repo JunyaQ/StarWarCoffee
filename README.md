@@ -1,8 +1,7 @@
 # Proejct_03 Starwars coffee
 
 ## About Starwars Coffee
-This is a application that allow business owner to signup or login, to upload their drink manu with informations including: drink name, drin price, size, category as well as description about the drink. <br/>
-It also buyer to view the menu, and also as a user, I want to click onto each drink and see the detail of the drink.<br/>
+
 
 ## Technologies used
 - Node js, 
