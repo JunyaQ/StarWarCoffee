@@ -1,4 +1,4 @@
-# Proejct_03 Starwars coffee
+# Starwars coffee
 
 ## About Starwars Coffee
 
