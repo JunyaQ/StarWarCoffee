@@ -1,0 +1,45 @@
+.form-header{
+    text-align: center;
+}
+  .form-body form{
+    max-width: 620px;
+    margin: auto;
+    padding: 10px;
+    background: white;
+  }
+  .signupbtn{
+    background-color: seagreen;
+    color: whitesmoke;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  input[type=text], input[type=firstName], input[type=lastName],input[type=email], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: whitesmoke;
+  }
+  
+  input[type=text]:focus, input[type=firstName]:focus, input[type=lastName]:focus,input[type=email]:focus, input[type=password]:focus {
+    background-color: gainsboro;
+    outline: none;
+  }
+  input[type=text], input[type=drinkname], input[type=price], input[type=size], input[type=category]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: whitesmoke;
+  }
+  input[type=text]:focus, input[type=drinkname]:focus, input[type=price]:focus, input[type=size]:focus, input[type=category]:focus{
+    background-color: gainsboro;
+    outline: none;
+  
+  }

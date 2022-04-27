@@ -1,76 +1,69 @@
-const{gql} = require('apollo-server-express');
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-## category
-type Category{
-  id: ID!
-  catname: String
-  #subcatname: String
-}
-## Add in
-type Addin{
-  honey: Int
-  creamer: String
-  cupoption: String
-  coldForm: String
-  drizzle:String
-  topping: String
-  whippedCream: String
-  cinnamon: String
-  espresso:Int
-  addlongshot:String
-  addDecaf: String
-  sauce: String
-  syrups: String
-}
-##drink
-type Drink{
-  id: ID!
-  drinkname: String
-  size: String
-  price: String
-  category:Category
-  description: String
-  #addin:[Addin]
-}
-## user
-type User {
-  id: ID!
-  firstName: String
-  lastName:String
-  email: String
-  password: String
-}
-##auth
-type Auth{
+
+  type Category {
+    _id: ID
+    name: String
+  }
+
+  type Customize {
+    size: String
+    milk: String
+    drizzle: String
+    addSyrups: String
+    syrup: String
+    sauces: String
+  }
+
+  type Drink {
+    _id: ID
+    name: String
+    description: String
+    image: String
+    price: Float
+    category: Category
+    customize: [Customize]
+  }
+
+  type Order {
+    _id: ID
+    purchaseDate: String
+    drinks: [Drink]
+  }
+
+  type User {
+    _id: ID
+    firstName: String
+    lastName: String
+    email: String
+    orders: [Order]
+  }
+
+  type Checkout {
+    session: ID
+  }
+
+  type Auth {
     token: ID!
     user: User
-}
-input addedDrink{
-  drinkname: String
-  size: String
-  price: Float
-  category: String
-  description: String
-}
-## query   ## TESTED QUERY
-type Query{
-  me: User
-  users: [User]
-  user: User
-  categories:[Category]
-  drinks(category:ID, catname: String):[Drink]
-  drink(id: ID!): Drink
-  addone(username: String): [Drink]
-}
-## Mutation  ##NOT TESTED
-type Mutation {
-  login(email: String!, password: String!): Auth
-  addUser(firstName: String!, lastName: String! email: String!, password: String!): Auth
-  updateDrink(id: ID!): Drink
-  addDrink(drinkname: String, size: String, price: String, description: String):Drink
-  removeDrink(drinkid:ID!): Drink
-}
+  }
+
+  type Query {
+    categories: [Category]
+    drinks(category: ID, name: String): [Drink]
+    drink(_id: ID!): Drink
+    user: User
+    order(_id: ID!): Order
+    checkout(drinks: [ID]!): Checkout
+  }
+
+  type Mutation {
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    addOrder(drinks: [ID]!): Order
+    }
 `;
 
 module.exports = typeDefs;

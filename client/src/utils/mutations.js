@@ -1,38 +1,48 @@
 import { gql } from '@apollo/client';
 
-export const LOGIN_USER = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      user {
-        id
-      }
+export const LOGIN = gql`
+    mutation login($email: String!, $password: String!) {
+        login(email: $email, password: $password) {
+            token 
+            user {
+                _id
+            }
+        }
     }
-  }
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-      token
-      user {
-        id
-      }
+    mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+        addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+            token
+            user {
+                _id
+            }
+        }
     }
-  }
 `;
-export const ADD_DRINK = gql`
-  mutation addDrink($drinkname: String!, $size: String!, $price: String!, $description: String) {
-    addDrink(drinkname: $drinkname, size: $size, price: $price, description: $description) {
-      id
-      drinkname
-      size
-      price
-      description
-      category{
-        id
-        #catname
-      }
+
+export const ADD_ORDER = gql`
+    mutation addOrder($drinks: [ID]!) {
+        addOrder(drinks: $drinks) {
+            purchaseDate
+            drinks {
+                _id
+                name
+                description
+                price
+                category {
+                    name
+                  }
+                customize {
+                    size
+                    milk
+                    drizzle
+                    addSyrups
+                    syrup
+                    sauces
+                } 
+            }
+        }
     }
-  }
 `;

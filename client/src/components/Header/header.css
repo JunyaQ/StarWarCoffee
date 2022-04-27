@@ -1,0 +1,8 @@
+.namebar{
+    text-decoration: none;
+    color: black;
+    display: inline;
+}
+.namebar:hover{
+    color: whitesmoke;
+}

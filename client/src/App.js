@@ -1,90 +1,66 @@
 import React from 'react';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { setContext } from '@apollo/client/link/context';
 
+// UI
+// import { ThemeProvider } from '@chakra-ui/core';
+// import customTheme  from '../src/theme/theme';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {ApolloProvider} from '@apollo/client';
+import ApolloClient from 'apollo-boost';
+import { StoreProvider } from './utils/GlobalState';
+
+import HomeStrap from './pages/Home/Home';
+import Menu from './pages/Menu/Menu';
+import MyOrder from './pages/MyOrder/MyOrder';
+import History from './pages/History/History';
+import SignupStrap from './pages/Signup/Signup';
+import LoginStrap from './pages/Login/Login';
+import NoMatch from "./pages/NoMatch/NoMatch";
+import Success from "./pages/Success/Success";
+import Headers from './components/Header';
+
+// import Nav from './components/Nav';
+import FooterStrap from './components/Footer'
 import NavigateBar from './components/NavigateBar';
-import DrinkList from './components/DrinkList';
-import DrinkForm from './components/DrinkForm';
 
-
-
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import NoMatch from "./pages/NoMatch";
-import Home from "./pages/Home";
-import Drinksupdate from './pages/Drinksupdate';
-import SingleCategory from './pages/SingleCategory';
-
-
-
-import SingleDrink from './pages/SingleDrink';
-
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
-
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  };
-});
-
-//console.log(httpLink);
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+  request: (operation) => {
+    const token = localStorage.getItem('id_token')
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}`: ''
+      }
+    })
+  },
+  uri: 'http://localhost:3001/graphql',
+})
 
 function App() {
-// const[menuItem, setMenuitem] = useState(menuItem);
-// const[buttons, setButtons] = useState([])
-
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
-        <Header />
-        <div className="container">
-        <Router>
-        <NavigateBar/>
-        {/* wait for solve navigate problem then remove */}
-        {/* <CategoryList/> */}
-        <Switch>
-        
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/categories/:id" component={SingleCategory}/>
-        <Route exact path="/drinks" component={DrinkList}/>
-        <Route exact path="/form" component={DrinkForm}/>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/drinks/:id" component={SingleDrink}/>
-        <Route exact path="/drinksupdate/:id" component={Drinksupdate}/>
-        <Route component={NoMatch} />
-        
-        </Switch>
-        </Router>
-          </div>
-              
-          {/* <Category />
-          <Drinks/> */}
-         
-        <Footer />
-        
+    <Headers/>
+      <Router>
+        <div>
+          <StoreProvider>
+            {/* <ThemeProvider theme={customTheme}> */}
+              <NavigateBar />
+              <Switch>
+                <Route exact path="/" component={HomeStrap} />
+                <Route exact path="/menu" component={Menu} />
+                <Route exact path="/login" component={LoginStrap} />
+                <Route exact path="/signup" component={SignupStrap} />
+                <Route exact path="/cart" component={MyOrder} />
+                <Route exact path="/profile" component={History} />
+                <Route exact path="/success" component={Success} />
+                <Route component={NoMatch} />
+              </Switch>
+              <FooterStrap />
+            {/* </ThemeProvider> */}
+          </StoreProvider>
         </div>
-     
+      </Router>
     </ApolloProvider>
+    
   );
 }
 

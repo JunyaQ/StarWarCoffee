@@ -1,0 +1,13 @@
+.bg{
+    width: 1200px;
+    height: 600px;
+    margin-left: 10%;   
+}
+/* @media (max-width: 140px) {
+    .bg{
+        width:100px;
+        height: 550px;
+        margin-left: 10%;
+
+    }
+} */

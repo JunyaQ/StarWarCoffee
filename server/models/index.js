@@ -1,8 +1,6 @@
-
-const Category = require('./Category');
-const Drink = require('./Drink');
-const Hcaddin = require('./Addin');
 const User = require('./User');
+const Drink = require('./Drink');
+const Order = require('./Order');
+const Category = require('./Category');
 
-
-module.exports = {Category,Drink,Hcaddin,User};
+module.exports = { User, Drink, Order, Category };

@@ -25,26 +25,26 @@ db.once('open', async () => {
 
 
  const categories = await Category.insertMany([{
-   catname:"Hot Coffee",//0
+   name:"Hot Coffee",//0
    //subcatname:"first-subcat",
  },
  {
-  catname:"Cold Coffee",//1
+  name:"Cold Coffee",//1
   //subcatname:"first-second-subcat",
 },
 {
-  catname:"Hot Tea",//2
+  name:"Hot Tea",//2
   //subcatname:"second-subcat",
 },
 {
-  catname:'Cold Tea',//3
+  name:'Cold Tea',//3
 }])
 //console.log(categories);
 
 
 await Drink.insertMany([
   {
-    drinkname:"Cafe Misto",
+    name:"Cafe Misto",
     size:"grande",
     price:1.23,
     category:[categories[0]._id],
@@ -52,7 +52,7 @@ await Drink.insertMany([
     //addin:''
   },
   {
-    drinkname:'Americano',
+    name:'Americano',
     size:'grande',
     price:2.23,
     category:[categories[0]._id],
@@ -60,7 +60,7 @@ await Drink.insertMany([
     //addin:''
   },
   {
-    drinkname:'Irish Cream Americano',
+    name:'Irish Cream Americano',
     size:'grande',
     price:2.23,
     category:[categories[0]._id],
@@ -69,7 +69,7 @@ await Drink.insertMany([
     
   },
   {
-    drinkname:'Cappuccino',
+    name:'Cappuccino',
     size:'grande',
     price:2.23,
     category:[categories[0]._id],
@@ -77,63 +77,63 @@ await Drink.insertMany([
     //addin:''
   },
   {
-    drinkname:'Salted Caramel Cold Brew',
+    name:'Salted Caramel Cold Brew',
     size:'tall',
     price:1.11,
     category:[categories[1]._id],
     description: "Some description about calted caramel cold brew"
   },
   {
-    drinkname:'Vanilla Sweet cream Cold Brew',
+    name:'Vanilla Sweet cream Cold Brew',
     size:'tall',
     price:1.11,
     category:[categories[1]._id],
     description: "Some description about vanilla sweet cream cold brew"
   },
   {
-    drinkname:'Cold Brew',
+    name:'Cold Brew',
     size:'tall',
     price:1.11,
     category:[categories[1]._id],
     description: "Some description about cold brew"
   },
   {
-    drinkname:'Chai Tea',
+    name:'Chai Tea',
     size:'grande',
     price:1.50,
     category:[categories[2]._id],
     description: "Some description about chai t"
   },
   {
-    drinkname:'London Fog Tea Latte',
+    name:'London Fog Tea Latte',
     size:'grande',
     price:1.50,
     category:[categories[2]._id],
     description: "Some description about london fog latte"
   },
   {
-    drinkname:'Earl Grey Tea',
+    name:'Earl Grey Tea',
     size:'grande',
     price:1.50,
     category:[categories[2]._id],
     description: "Some description about earl grey"
   },
   {
-    drinkname:'Iced Chai Tea Latte',
+    name:'Iced Chai Tea Latte',
     size:'grande',
     price:1.50,
     category:[categories[3]._id],
     description: "Some description about iced chai"
   },
   {
-    drinkname:'Iced Chai Tea Latte',
+    name:'Iced Chai Tea Latte',
     size:'grande',
     price:1.50,
     category:[categories[3]._id],
     description: "Some description about iced chai latte"
   },
   {
-    drinkname:'Iced Matcha Tea Latte',
+    name:'Iced Matcha Tea Latte',
     size:'grande',
     price:1.50,
     category:[categories[3]._id],

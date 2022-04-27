@@ -1,19 +1,20 @@
 import React from 'react';
 import logo from '../../img/logo.jpg'
-import { BrowserRouter as Link } from "react-router-dom";
+import {Link,Router,BrowserRouter} from "react-router-dom";
+import './header.css';
 
 const Header = () => {
   return (
     <section>
     <header className="bg-success mb-4 py-2 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
-      <Link to="/home">
-      <img src={logo} alt="Logo" className='logo'/>
-      </Link>
+     <img src={logo} alt="Logo" className='logo'/> 
      
-      <Link to="/home">
-        <h1>Star Wars Coffee</h1>
-        </Link>
+     <BrowserRouter>
+     <h1><Link to='/'  className='namebar' >Star Wars Coffee</Link></h1>
+     </BrowserRouter>
+       
+  
       </div>
     </header>
     </section>

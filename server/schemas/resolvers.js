@@ -1,162 +1,141 @@
-const { Category, Drink, User } = require("../models");
-const { signToken } = require("../utils/auth");
-const { AuthenticationError } = require("apollo-server-express");
-
-
+const { AuthenticationError } = require('apollo-server-express');
+const { User, Drink, Order, Category } = require('../models');
+const { signToken } = require('../utils/auth');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
-  Query: {
-    users: async () => {
-      return User.find()
-      .select('-__v -password')
-      .populate('drinks');
-    },
+    Query: {
+      categories: async () => {
+        return await Category.find();
+      },
+      // get all drinks
+      drinks: async (parent, { category, name }) => {
+        const params = {};
 
-    /////////////////////
-      // user info, only login
-      me: async (parent, args, context) => {
+        if (category) {
+          params.category = category;
+        }
+
+        if(name) {
+          params.name = {
+            $regex: name
+          };
+        }
+        return await Drink.find(params).populate('category');
+      },
+      // get one drink
+      drink: async (parent, {_id}) => {
+        return await Product.findById(_id).populate('category');
+      },
+      // checkout
+      order: async (parent, { _id }, context) => {
         if (context.user) {
-          const userData = await User.findOne({ _id: context.user._id })
-            .select('-__v -password')
-            .populate('drinks')
+          const user = await User.findById(context.user._id).populate({
+            path: 'orders.drinks'
+          });
   
-          return userData;
+          return user.orders.id(_id);
         }
   
         throw new AuthenticationError('Not logged in');
       },
+      // stripe
+      checkout: async (parent, args, context) => {
+        const url = new URL(context.headers.referer).origin;
+        const order = new Order({ drinks: args.drinks });
+        const line_items = [];
   
-  //   //
-  //   // for one
-    drink: async(parent, {id})=>{
-      // console.log(id);
-        return await Drink.findOne({_id:id})
-        .populate('category');
-        
-        //.populate('addin');
-        //info need
-    },
-   
-  //   //for all - front page display
-    categories:async()=>{
-        return await Category.find();
-    },
+        const { drinks } = await order.populate('drinks').execPopulate();
   
-    // drinks: async()=>{
-    //     return await Drink.find()
-    //     .populate('category');
-    //     // .then(data=>
-    //     //   console.log(data));
-    //     //.populate('addin');
-    // },
-    drinks: async (parent, { category, catname }) => {
-      const params = {};
-
-      if (category) {
-        params.category = category;
-      }
-
-      if (catname) {
-        params.name = {
-          $regex: catname
-        };
-      }
-      return await Drink.find(params).populate('category');
-    },
- 
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user.id);
-
-        return user;
-      }
-
-      throw new AuthenticationError('Not logged in');
-    },
-    addone: async (parent, { email }) => {
-      const params = email ? { email } : {};
-      return Drink.find(params).sort({ createdAt: -1 });
-    },
+        for (let i = 0; i < drinks.length; i++) {
+          const drink = await stripe.products.create({
+            name: drinks[i].name,
+            description: drinks[i].description,
+            images: [`${url}/images/${drinks[i].image}`]
+          });
   
-  },
-  Mutation: {
-    addUser: async (parent, args) => {
-      try {
+          const price = await stripe.prices.create({
+            product: drink.id,
+            unit_amount: drinks[i].price * 100,
+            currency: 'cad',
+          });
+  
+          line_items.push({
+            price: price.id,
+            quantity: 1
+          });
+        }
+        // stripe
+        const session = await stripe.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items,
+          mode: 'payment',
+          success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${url}/`
+        });
+  
+        return { session: session.id };
+      },
+      // get user for order history
+      user: async (parent, args, context) => {
+        if(context.user) {
+          const user =  await User.findById(context.user._id).populate({
+            path: 'orders.drinks',
+            populate: 'category'
+          });
+          // what is this for? how to we show the info we want for order history page?
+          user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+          return user;
+        }
+      }
+    },
+    Mutation: {
+      addUser: async (parent, args) => {
         const user = await User.create(args);
-
         const token = signToken(user);
+  
         return { token, user };
-      } 
-      catch (err) {
-        console.log(err);
-      }
-    },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const token = signToken(user);
-      return { token, user };
-    },
-
+      },
+      addOrder: async (parent, { drinks }, context) => {
+        console.log(context);
+        if (context.user) {
+          const order = new Order({ drinks });
   
-    // addDrink
-    addDrink: async (parent, args, context) => {
-      if(context!=null){
-        const add = await Drink.create({ ...args, email: context.user.email});
-        await User.findByIdAndUpdate(
-          {_id: context.user._id},
-          {$push:{
-            drinkname: args.drinkname,
-            price: args.price,
-            size: args.price,
-           // category: args.category,
-            description: args.description
-          }},
-          {new: true}
-
-        );
-        return add;
+          await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+  
+          return order;
+        }
+  
+        throw new AuthenticationError('Not logged in');
+      },
+      updateUser: async (parent, args, context) => {
+        if (context.user) {
+          return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+        }
+  
+        throw new AuthenticationError('Not logged in');
+      },
+      login: async (parent, { email, password }) => {
+        const user = await User.findOne({ email });
+  
+        if (!user) {
+          throw new AuthenticationError('Incorrect credentials');
+        }
+  
+        const correctPw = await user.isCorrectPassword(password);
+  
+        if (!correctPw) {
+          throw new AuthenticationError('Incorrect credentials');
+        }
+  
+        const token = signToken(user);
+  
+        return { token, user };
       }
 
-      throw new AuthenticationError('You need to be logged in!');
-    },
-          
-          
-      
-
-    // 
-
-    // addDrink: async (parent, args) => {
-    //   try {
-    //     const drink = await Drink.create(args);
-    //     return {drink};
-    //   } 
-    //   catch (err) {
-    //     console.log(err);
-    //   }
-    // },
     }
-};
+  };
 
-module.exports = resolvers;
-
-
-// const resolvers = {
-//     Query: {
-//       helloWorld: () => {
-//         return 'Hello world!';
-//       }
-//     }
-//   };
   
-//   module.exports = resolvers;
+  
+  module.exports = resolvers;

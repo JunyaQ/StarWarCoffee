@@ -1,35 +1,35 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const drinkSchema = new Schema({
-    drinkname:{
-        type: String,
-        required: true,
-        trim: true
-    },
-    size:{
-        type: String,
-        required: true,
-        default:"grande"
-    },
-    price:{
-        type: String,
-        required: true,
-    },
-    category:{
-        type: Schema.Types.ObjectId,
-        ref:'Category',
-        //required:true
-    },
-    description:{
-        type: String
-    }
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  description: {
+    type: String
+  },
+  image: {
+    type: String
+  },
+  price: {
+    type: Number,
+    required: true,
+    min: 0.99
+  },
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true
+  },
+  customize: {
+    type: Schema.Types.ObjectId,
+    ref: 'Customize',
+  }
+});
 
-    // addin:{
-    //     type:Schema.Types.ObjectId,
-    //     ref:"Addin",
-    // }
+const Drink = mongoose.model('Drink', drinkSchema);
 
-})
-
-const Drink = model('Drink', drinkSchema);
 module.exports = Drink;
